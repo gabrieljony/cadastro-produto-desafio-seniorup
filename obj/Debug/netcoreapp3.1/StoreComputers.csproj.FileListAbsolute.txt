@@ -35,3 +35,5 @@ C:\Users\gabri\Desktop\StoreComputers\obj\Debug\netcoreapp3.1\staticwebassets\St
 C:\Users\gabri\Desktop\StoreComputers\obj\Debug\netcoreapp3.1\StoreComputers.dll
 C:\Users\gabri\Desktop\StoreComputers\obj\Debug\netcoreapp3.1\StoreComputers.pdb
 C:\Users\gabri\Desktop\StoreComputers\obj\Debug\netcoreapp3.1\StoreComputers.genruntimeconfig.cache
+C:\Users\gabri\Desktop\StoreComputers\bin\Debug\netcoreapp3.1\clientapp\package-lock.json
+C:\Users\gabri\Desktop\StoreComputers\bin\Debug\netcoreapp3.1\clientapp\package.json
