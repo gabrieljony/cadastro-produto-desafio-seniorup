@@ -30,6 +30,7 @@ namespace StoreComputers
       services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
       services.AddScoped<DataContext, DataContext>();
       services.AddControllers();
+      services.AddCors();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +40,14 @@ namespace StoreComputers
       {
         app.UseDeveloperExceptionPage();
       }
+
+      app.UseCors(builder =>
+      {
+        builder.WithOrigins("http://localhost:8083/")
+          .AllowAnyHeader()
+          .AllowAnyMethod()
+          .AllowAnyOrigin();
+      });
 
       app.UseHttpsRedirection();
 
