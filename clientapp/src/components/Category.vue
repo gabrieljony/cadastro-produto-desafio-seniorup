@@ -3,7 +3,8 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
-          <h1>Cadastro de Categoria</h1>
+          <PageTitle icon="app-indicator" title="Categoria"
+            subtitle="Cadastro" />
           <b-form @submit="onSubmit" @reset="onReset" v-if="show">
             <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
               <b-form-input id="input-1" v-model="form.title" required></b-form-input>
@@ -62,8 +63,11 @@
 </template>
 
 <script>
+import PageTitle from './template/PageTitle'
+
 export default {
   name: "category",
+  components: { PageTitle },
   data() {
     return {
       form: {

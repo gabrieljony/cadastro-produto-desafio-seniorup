@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <h1>Desafio</h1>
+          <PageTitle icon="info-square" title="Sobre" subtitle="Informações do Desafio proposto" />
           <p>Desenvolvedor(a) Web Full Stack na POS CONTROLE</p>
           <p>
             1) Desenvolva um Web App (responsivo) para cadastro de produtos, evidenciando a utilização dos seguintes conceitos:
@@ -27,8 +27,11 @@
 </template>
 
 <script>
+import PageTitle from "./template/PageTitle";
+
 export default {
-  name: "about"
+  name: "about",
+  components: { PageTitle }
 };
 </script>
 

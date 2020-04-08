@@ -3,8 +3,8 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
-          <h1>Cadastro de Produto</h1>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <PageTitle icon="file-plus" title="Produto" subtitle="Cadastro" />
+          <b-form @submit="onSubmit" @reset="onReset">
             <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
               <b-form-input id="input-1" v-model="form.title" required></b-form-input>
             </b-form-group>
@@ -27,7 +27,11 @@
             <b-form-group id="input-group-4" label="Categoria:" label-for="input-4">
               <b-form-select id="input-4" v-model="form.categoryId" required>
                 <b-form-select-option :value="null">Selecione uma categoria</b-form-select-option>
-                <b-form-select-option v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</b-form-select-option>
+                <b-form-select-option
+                  v-for="category in categories"
+                  :key="category.id"
+                  :value="category.id"
+                >{{ category.title }}</b-form-select-option>
               </b-form-select>
             </b-form-group>
 
@@ -52,9 +56,11 @@
 
 <script>
 import Category from "../services/category";
+import PageTitle from "./template/PageTitle";
 
 export default {
   name: "product",
+  components: { PageTitle },
   data() {
     return {
       categories: [],
@@ -64,33 +70,28 @@ export default {
         price: null,
         categoryId: null
       },
-      selected: null,
-      show: true
+      selected: null
     };
   },
   mounted() {
-    Category.get().then(response => {
-      this.categories = response.data;
-      console.log(this.categories);
-    });
+    this.getCategory();
   },
   methods: {
+    getCategory() {
+      Category.get().then(response => {
+        this.categories = response.data;
+      });
+    },
     onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
     },
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      this.form.title = "";
+      this.form.description = "";
+      this.form.price = null;
+      this.form.categoryId = null;
     }
   }
 };

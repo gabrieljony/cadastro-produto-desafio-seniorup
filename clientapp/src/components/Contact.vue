@@ -3,7 +3,7 @@
     <b-container >
       <b-row>
         <b-col>
-          <h1>Gabriel Jony Borges Silva</h1>
+          <h1>Autor: <span>Gabriel Jony Borges Silva</span></h1>
           <p>Contato: 71 991312256</p>
           <p>E-mail: gabriel_jony@hotmail.com</p>
         </b-col>
