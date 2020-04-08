@@ -1,13 +1,21 @@
 <template>
   <div>
-    <p>contact</p>
+    <b-container >
+      <b-row>
+        <b-col>
+          <h1>Gabriel Jony Borges Silva</h1>
+          <p>Contato: 71 991312256</p>
+          <p>E-mail: gabriel_jony@hotmail.com</p>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
 export default {
   name: "contact"
-}
+};
 </script>
 
 <style scoped>

@@ -1,6 +1,21 @@
 <template>
   <div>
-    <p>about</p>
+    <b-container>
+      <b-row>
+        <b-col>
+          <h1>Desafio</h1>
+          <p>Desenvolvedor(a) Web Full Stack na POS CONTROLE</p>
+          <p>
+            1) Desenvolva um Web App (responsivo) para cadastro de produtos, evidenciando a utilização dos seguintes conceitos:
+            <ul>
+              <li>Front End: Vue.js</li>
+              <li>Back end: .NET</li>
+            </ul>
+            Prazo de entrega: até 72h horas após a hora de envio deste desafio por e-mail.
+          </p>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
