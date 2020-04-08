@@ -40,11 +40,42 @@
       </b-row>
       <hr />
       <b-row>
-        <b-container fluid>
-          <b-table hover striped :items="categories" :fields="fields"></b-table>
-        </b-container>
+        <b-table hover striped :items="categories" :fields="fields">
+          <template v-slot:cell(actions)="data">
+            <b-icon
+              icon="pencil"
+              variant="info"
+              font-scale="1.5"
+              v-b-tooltip.hover.left
+              title="Editar"
+              class="mr-1"
+              @click="loadCategory(data.item, 'update')"
+            ></b-icon>
+            <b-icon
+              icon="trash"
+              variant="danger"
+              font-scale="1.5"
+              v-b-tooltip.hover.right
+              title="Excluir"
+              v-b-modal="'myModal'"
+              @click="showModal(data.item)"
+            ></b-icon>
+          </template>
+        </b-table>
       </b-row>
     </b-container>
+    <!-- Modal -->
+    <b-modal id="myModal" hide-footer>
+      <template v-slot:modal-title>Excluir</template>
+      <div class="d-block text-center">
+        <h3>
+          Deseja excluir a Categoria:
+          <span style="color: #dc3545;">{{ selectedCategories.title }}</span>?
+        </h3>
+      </div>
+      <b-button class="mt-3" @click="$bvModal.hide('myModal')" variant="danger">Cancelar</b-button>
+      <b-button class="mt-3" @click="removeCategory(selectedCategories)" variant="primary">Excluir</b-button>
+    </b-modal>
   </div>
 </template>
 
@@ -57,6 +88,7 @@ export default {
   components: { PageTitle },
   data() {
     return {
+      selectedCategories: "",
       mode: "save",
       categories: [],
       form: {
@@ -67,17 +99,17 @@ export default {
           key: "id",
           label: "Código",
           sortable: true,
-          sortDirection: 'desc'
+          sortDirection: "desc"
         },
         {
           key: "title",
           label: "Nome",
-          sortable: true,
+          sortable: true
         },
         {
           key: "actions",
           label: "Ações",
-          class: 'text-center'
+          class: "text-center"
         }
       ]
     };
@@ -95,7 +127,8 @@ export default {
       });
     },
     onSubmit() {
-      if (this.categories.id) {
+      if (this.form.id) {
+        console.log(this.form.id);
       } else {
         Category.post(this.form)
           .then(() => {
@@ -116,7 +149,7 @@ export default {
       this.getCategory();
     },
     makeToast(variant = null) {
-      console.log(variant);
+      // console.log(variant);
       this.$bvToast.toast(
         `Categoria ${
           variant == "success"
@@ -129,6 +162,17 @@ export default {
           solid: true
         }
       );
+    },
+    loadCategory(categories, mode = "update") {
+      this.mode = mode;
+      this.form = { ...categories };
+    },
+    removeCategory(categories) {
+      // console.log(categories);
+      this.$bvModal.hide("myModal");
+    },
+    showModal(categories) {
+      this.selectedCategories = categories;
     }
   }
 };
