@@ -14,12 +14,27 @@
             </b-form-group>
 
             <b-form-group id="input-group-3" label="Preço:" label-for="input-3">
-              <b-form-input type="number" id="input-3" v-model="form.price" required></b-form-input>
+              <b-form-input
+                type="number"
+                id="input-3"
+                v-model="form.price"
+                required
+                placeholder="0.00"
+                min="0.00"
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group id="input-group-4" label="Categoria:" label-for="input-4">
-              <b-form-select id="input-4" v-model="form.categoryId" :options="categories" required></b-form-select>
+              <b-form-select id="input-4" v-model="form.categoryId" required>
+                <b-form-select-option :value="null">Selecione uma categoria</b-form-select-option>
+                <b-form-select-option v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</b-form-select-option>
+              </b-form-select>
             </b-form-group>
+
+            <div class="mt-2">
+              Selected:
+              <strong>{{ form.categoryId }}</strong>
+            </div>
 
             <div>
               <b-button type="reset" variant="danger">Cancelar</b-button>
@@ -36,25 +51,28 @@
 </template>
 
 <script>
+import Category from "../services/category";
+
 export default {
   name: "product",
   data() {
     return {
+      categories: [],
       form: {
         title: "",
         description: "",
-        price: 0,
+        price: null,
         categoryId: null
       },
-      categories: [
-        { text: "Selecione uma categoria", value: null },
-        "Carrots",
-        "Beans",
-        "Tomatoes",
-        "Corn"
-      ],
+      selected: null,
       show: true
     };
+  },
+  mounted() {
+    Category.get().then(response => {
+      this.categories = response.data;
+      console.log(this.categories);
+    });
   },
   methods: {
     onSubmit(evt) {
