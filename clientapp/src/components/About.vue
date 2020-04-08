@@ -13,6 +13,13 @@
             </ul>
             Prazo de entrega: até 72h horas após a hora de envio deste desafio por e-mail.
           </p>
+          <p>Stack utilizadas:</p>
+          <ul>
+            <li>ASP.NET Core Web API</li>
+            <li>EF Core</li>
+            <li>VueJs</li>
+            <li>Bootstrap</li>
+          </ul>
         </b-col>
       </b-row>
     </b-container>
