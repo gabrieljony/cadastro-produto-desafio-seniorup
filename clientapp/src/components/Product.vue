@@ -45,10 +45,12 @@
               <b-button type="submit" variant="primary">Cadastrar</b-button>
             </div>
           </b-form>
-          <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ form }}</pre>
-          </b-card>
         </b-col>
+      </b-row>
+      <b-row>
+        <b-container fluid>
+          <b-table hover striped :items="products"></b-table>
+        </b-container>
       </b-row>
     </b-container>
   </div>
@@ -56,6 +58,7 @@
 
 <script>
 import Category from "../services/category";
+import Product from "../services/product";
 import PageTitle from "./template/PageTitle";
 
 export default {
@@ -70,13 +73,20 @@ export default {
         price: null,
         categoryId: null
       },
-      selected: null
+      selected: null,
+      products: []
     };
   },
   mounted() {
     this.getCategory();
+    this.getProducts();
   },
   methods: {
+    getProducts() {
+      Product.get().then(response => {
+        this.products = response.data;
+      });
+    },
     getCategory() {
       Category.get().then(response => {
         this.categories = response.data;

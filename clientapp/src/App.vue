@@ -2,7 +2,7 @@
   <div id="app">
     <Header title="Store Computer" />
     <Content />
-    <Footer class="footer" />
+    <!-- <Footer class="footer" /> -->
   </div>
 </template>
 
