@@ -228,6 +228,7 @@ export default {
       });
     },
     onSubmit() {
+      this.form.price = parseFloat(this.form.price.replace(",", ""));
       if (this.form.id) {
         Product.put(this.form.id, this.form)
           .then(() => {
@@ -239,7 +240,6 @@ export default {
           });
       } else {
         this.form.price = parseFloat(this.form.price.replace(",", ""));
-        console.log(this.form.price);
         Product.post(this.form)
           .then(() => {
             this.onReset();
