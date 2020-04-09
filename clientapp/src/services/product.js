@@ -14,8 +14,7 @@ export default	{
 		return http.put(`products/${id}`, product);
 	},
 
-
-	// delete:(produto)=>{
-	// 	return http.delete('products', { data: produto })
-	// }
+	delete:(id)=>{
+		return http.delete(`products/${id}`);
+	}
 }

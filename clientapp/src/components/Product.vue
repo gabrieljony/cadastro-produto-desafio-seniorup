@@ -239,7 +239,6 @@ export default {
             this.makeToast("success");
           })
           .catch(() => {
-            // console.log(this.form);
             this.makeToast("danger");
           });
       }
@@ -253,7 +252,6 @@ export default {
       this.getProducts();
     },
     makeToast(variant = null) {
-      // console.log(variant);
       this.$bvToast.toast(
         `Produto ${
           variant == "success"
@@ -272,7 +270,15 @@ export default {
       this.form = { ...product };
     },
     removeProduct(product) {
-      // console.log(categories);
+      Product.delete(product.id)
+        .then(() => {
+          this.onReset();
+          this.makeToast("success");
+        })
+        .catch(() => {
+          this.makeToast("danger");
+        });
+
       this.$bvModal.hide("myModal");
     },
     showModal(product) {

@@ -14,7 +14,7 @@ export default {
   	return http.put(`categories/${id}`, category);
   },
 
-  delete:(id, category)=>{
-  	return http.delete(`categories/${id}`, category);
+  delete:(id)=>{
+  	return http.delete(`categories/${id}`);
   }
 }

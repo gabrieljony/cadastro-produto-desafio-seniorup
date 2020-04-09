@@ -156,7 +156,6 @@ export default {
       this.getCategory();
     },
     makeToast(variant = null) {
-      // console.log(variant);
       this.$bvToast.toast(
         `Categoria ${
           variant == "success"
@@ -175,8 +174,7 @@ export default {
       this.form = { ...categories };
     },
     removeCategory(categories) {
-      console.log(categories);
-      Category.delete(categories.id, categories)
+      Category.delete(categories.id)
         .then(() => {
           this.onReset();
           this.makeToast("success");
