@@ -83,6 +83,20 @@ namespace StoreComputers.Controllers
       }
     }
 
+    [HttpDelete]
+    [Route("{id:int}")]
+
+    public async Task<ActionResult<Product>> Delete([FromServices] DataContext context, int id,
+                [FromBody]Product model)
+    {
+      if (model == null)
+                return NotFound();
+      
+      context.Products.Remove(model);
+      await context.SaveChangesAsync();
+      return NoContent();
+    }
+
 
   }
 }
