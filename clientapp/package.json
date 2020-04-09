@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.10.1",
+    "vanilla-masker": "^1.2.0",
     "vee-validate": "^3.2.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import './config/bootstrap'
+import VMasker from 'vanilla-masker'
 
 import {
   ValidationObserver,
@@ -11,6 +12,8 @@ import {
 } from "vee-validate";
 import pt_BR from "vee-validate/dist/locale/pt_BR.json";
 import * as rules from "vee-validate/dist/rules";
+
+Vue.use(VMasker)
 
 
 // Install VeeValidate rules and localization

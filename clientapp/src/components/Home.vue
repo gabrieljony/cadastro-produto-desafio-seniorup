@@ -15,7 +15,7 @@
             <b-badge variant="info">{{product.category.title}}</b-badge>
             <b-card-text>{{ product.description }}</b-card-text>
             <template v-slot:footer>
-              <em>{{ product.price }}</em>
+              <em>R$ {{ formatPrice(product.price) }}</em>
             </template>
           </b-card>
         </b-col>
@@ -26,6 +26,7 @@
 
 <script>
 import Product from "../services/product";
+import VMasker from "vanilla-masker";
 
 export default {
   name: "home",
@@ -51,6 +52,9 @@ export default {
     },
     onSlideEnd(slide) {
       this.sliding = false;
+    },
+    formatPrice(value) {
+      return VMasker.toMoney(value);
     }
   }
 };
