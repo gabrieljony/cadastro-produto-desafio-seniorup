@@ -175,7 +175,16 @@ export default {
       this.form = { ...categories };
     },
     removeCategory(categories) {
-      // console.log(categories);
+      console.log(categories);
+      Category.delete(categories.id, categories)
+        .then(() => {
+          this.onReset();
+          this.makeToast("success");
+        })
+        .catch(() => {
+          this.makeToast("danger");
+        });
+
       this.$bvModal.hide("myModal");
     },
     showModal(categories) {
