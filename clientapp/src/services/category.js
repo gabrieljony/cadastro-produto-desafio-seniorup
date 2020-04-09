@@ -6,8 +6,8 @@ export default {
     return http.get('categories')
   },
 
-  post: (categories) => {
-    return http.post('categories', categories);
+  post: (category) => {
+    return http.post('categories', category);
   },
 
   // put:(produto)=>{

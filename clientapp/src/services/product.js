@@ -6,8 +6,8 @@ export default	{
 		return http.get('products')
   },
 
-	post:(id)=>{
-		return http.post('products', id);
+	post:(product)=>{
+		return http.post('products', product);
   },
     
 	// put:(produto)=>{

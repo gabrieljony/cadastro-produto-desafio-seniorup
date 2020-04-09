@@ -32,7 +32,7 @@
               <div>
                 <b-button type="reset" variant="danger" class="mr-2">Cancelar</b-button>
                 <b-button type="submit" variant="primary" v-if="mode === 'save'">Cadastrar</b-button>
-                <b-button type="submit" variant="primary" v-if="mode === 'update'">Atualizar</b-button>
+                <b-button type="submit" variant="success" v-if="mode === 'update'">Atualizar</b-button>
               </div>
             </b-form>
           </validation-observer>
@@ -142,7 +142,7 @@ export default {
     },
     onReset() {
       this.mode = "save";
-      this.form.title = "";
+      this.form = {};
       this.$nextTick(() => {
         this.$refs.observer.reset();
       });
@@ -172,6 +172,7 @@ export default {
       this.$bvModal.hide("myModal");
     },
     showModal(categories) {
+      this.onReset();
       this.selectedCategories = categories;
     }
   }
