@@ -128,7 +128,14 @@ export default {
     },
     onSubmit() {
       if (this.form.id) {
-        console.log(this.form.id);
+        Category.put(this.form.id, this.form)
+          .then(() => {
+            this.onReset();
+            this.makeToast("success");
+          })
+          .catch(() => {
+            this.makeToast("danger");
+          });
       } else {
         Category.post(this.form)
           .then(() => {

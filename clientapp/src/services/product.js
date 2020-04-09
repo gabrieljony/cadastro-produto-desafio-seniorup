@@ -10,9 +10,10 @@ export default	{
 		return http.post('products', product);
   },
     
-	// put:(produto)=>{
-	// 	return http.put('products',produto);
-  // },
+	put:(id, product)=>{
+		return http.put(`products/${id}`, product);
+	},
+
 
 	// delete:(produto)=>{
 	// 	return http.delete('products', { data: produto })

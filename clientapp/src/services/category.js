@@ -10,11 +10,11 @@ export default {
     return http.post('categories', category);
   },
 
-  // put:(produto)=>{
-  // 	return http.put('products',produto);
-  // },
+  put:(id, category)=>{
+  	return http.put(`categories/${id}`, category);
+  },
 
-  // delete:(produto)=>{
-  // 	return http.delete('products', { data: produto })
-  // }
+  delete:(category)=>{
+  	return http.delete('categories', { data: category })
+  }
 }
