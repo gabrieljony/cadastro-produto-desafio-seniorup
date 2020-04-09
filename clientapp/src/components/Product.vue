@@ -228,25 +228,26 @@ export default {
       });
     },
     onSubmit() {
-      this.form.price = parseFloat(this.form.price.replace(",", ""));
+      this.form.price = parseFloat(
+        this.form.price.replace(".", "").replace(",", ".")
+      );
       if (this.form.id) {
         Product.put(this.form.id, this.form)
           .then(() => {
             this.onReset();
-            this.makeToast("success");
+            this.makeToast("success", "atualizado");
           })
           .catch(() => {
-            this.makeToast("danger");
+            this.makeToast("danger", "atualização");
           });
       } else {
-        this.form.price = parseFloat(this.form.price.replace(",", ""));
         Product.post(this.form)
           .then(() => {
             this.onReset();
-            this.makeToast("success");
+            this.makeToast("success", "cadastrado");
           })
           .catch(() => {
-            this.makeToast("danger");
+            this.makeToast("danger", "operação de cadastro");
           });
       }
     },
@@ -258,12 +259,12 @@ export default {
       });
       this.getProducts();
     },
-    makeToast(variant = null) {
+    makeToast(variant = null, type) {
       this.$bvToast.toast(
         `Produto ${
           variant == "success"
-            ? "cadastrado com sucesso."
-            : "com Error, tente novamente."
+            ? type + " com sucesso."
+            : "com Error na " + type + ", tente novamente."
         }`,
         {
           title: `${variant == "success" ? "Sucesso" : "Error"}`,
@@ -275,15 +276,18 @@ export default {
     loadProduct(product, mode = "update") {
       this.mode = mode;
       this.form = { ...product };
+      this.form.price = this.formatterMoney(
+        String(this.form.price)
+      );
     },
     removeProduct(product) {
       Product.delete(product.id)
         .then(() => {
           this.onReset();
-          this.makeToast("success");
+          this.makeToast("success", "removido");
         })
         .catch(() => {
-          this.makeToast("danger");
+          this.makeToast("danger", "remoção");
         });
 
       this.$bvModal.hide("myModal");
@@ -293,7 +297,7 @@ export default {
       this.selectedProduct = product;
     },
     formatPrice(value) {
-      return VMasker.toMoney(value);
+      return VMasker.toMoney(parseFloat(value).toFixed(2));
     },
     formatterMoney(value) {
       if (value) return mascaraMoeda(value, ".", ",");
