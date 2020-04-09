@@ -75,7 +75,7 @@ namespace StoreComputers.Controllers
     public async Task<ActionResult<Category>> Delete([FromServices] DataContext context, int id,
                 [FromBody]Category model)
     {
-      if (model == null)
+      if (model == null || !id.Equals(model.Id))
                 return NotFound();
       
       context.Categories.Remove(model);

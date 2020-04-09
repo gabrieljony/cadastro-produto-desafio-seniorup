@@ -89,7 +89,7 @@ namespace StoreComputers.Controllers
     public async Task<ActionResult<Product>> Delete([FromServices] DataContext context, int id,
                 [FromBody]Product model)
     {
-      if (model == null)
+      if (model == null || !id.Equals(model.Id))
                 return NotFound();
       
       context.Products.Remove(model);
