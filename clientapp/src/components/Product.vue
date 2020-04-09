@@ -51,19 +51,19 @@
               <!-- Preço -->
               <validation-provider
                 name="Preço"
-                :rules="{ required: true, min_value: 0 }"
+                :rules="{ required: true }"
                 v-slot="validationPrice"
               >
                 <b-form-group id="input-group-3" label="Preço:" label-for="input-3">
                   <b-form-input
                     :state="getValidationState(validationPrice)"
                     aria-describedby="input-description"
-                    type="number"
+                    type="text"
                     id="input-3"
-                    v-model.number="form.price"
+                    v-model="form.price"
                     required
-                    placeholder="0.00"
-                    min="0.00"
+                    placeholder="R$"
+                    :formatter="formatterMoney"
                   ></b-form-input>
                   <b-form-invalid-feedback id="input-description">{{ validationPrice.errors[0] }}</b-form-invalid-feedback>
                 </b-form-group>
@@ -109,6 +109,9 @@
       <b-row>
         <b-container fluid>
           <b-table hover striped :items="products" :fields="fields">
+            <template v-slot:cell(price)="data">
+              <em>R$ {{ formatPrice(data.item.price) }}</em>
+            </template>
             <template v-slot:cell(actions)="data">
               <b-icon
                 icon="pencil"
@@ -152,6 +155,8 @@
 import Category from "../services/category";
 import Product from "../services/product";
 import PageTitle from "./template/PageTitle";
+import VMasker from "vanilla-masker";
+import { mascaraMoeda } from "../masks";
 
 export default {
   name: "product",
@@ -233,6 +238,8 @@ export default {
             this.makeToast("danger");
           });
       } else {
+        this.form.price = parseFloat(this.form.price.replace(",", ""));
+        console.log(this.form.price);
         Product.post(this.form)
           .then(() => {
             this.onReset();
@@ -284,6 +291,12 @@ export default {
     showModal(product) {
       this.onReset();
       this.selectedProduct = product;
+    },
+    formatPrice(value) {
+      return VMasker.toMoney(value);
+    },
+    formatterMoney(value) {
+      if (value) return mascaraMoeda(value, ".", ",");
     }
   }
 };
