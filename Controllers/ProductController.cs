@@ -65,6 +65,24 @@ namespace StoreComputers.Controllers
       }
     }
 
+    [HttpPut]
+    [Route("{id:int}")]
+
+    public async Task<ActionResult<Product>> Put([FromServices] DataContext context, int id,
+                [FromBody]Product model)
+    {
+      if (!ModelState.IsValid || !id.Equals(model.Id))
+      {
+        return BadRequest(ModelState);
+      }
+      else
+      {
+        context.Products.Update(model);
+        await context.SaveChangesAsync();
+        return model;
+      }
+    }
+
 
   }
 }

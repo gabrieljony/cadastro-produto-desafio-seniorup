@@ -39,5 +39,35 @@ namespace StoreComputers.Controllers
         return BadRequest(ModelState);
       }
     }
+
+    [HttpGet]
+    [Route("{id:int}")]
+
+    public async Task<ActionResult<Category>> GetById([FromServices] DataContext context, int id)
+    {
+      var category = await context.Categories
+          .AsNoTracking()
+          .FirstOrDefaultAsync(x => x.Id == id);
+      return category;
+    }
+
+    [HttpPut]
+    [Route("{id:int}")]
+
+    public async Task<ActionResult<Category>> Put([FromServices] DataContext context, int id,
+                [FromBody]Category model)
+    {
+      if (!ModelState.IsValid || !id.Equals(model.Id))
+      {
+        return BadRequest(ModelState);
+      }
+      else
+      {
+        context.Categories.Update(model);
+        await context.SaveChangesAsync();
+        return model;
+      }
+    }
+
   }
 }
