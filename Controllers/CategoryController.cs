@@ -72,13 +72,15 @@ namespace StoreComputers.Controllers
     [HttpDelete]
     [Route("{id:int}")]
 
-    public async Task<ActionResult<Category>> Delete([FromServices] DataContext context, int id,
-                [FromBody]Category model)
+    public async Task<ActionResult> Delete([FromServices] DataContext context, int id)
     {
-      if (model == null || !id.Equals(model.Id))
-                return NotFound();
+      var category = await context.Categories
+          .AsNoTracking()
+          .FirstOrDefaultAsync(x => x.Id == id);
+
+      if(category == null) return NotFound();
       
-      context.Categories.Remove(model);
+      context.Categories.Remove(category);
       await context.SaveChangesAsync();
       return NoContent();
     }
