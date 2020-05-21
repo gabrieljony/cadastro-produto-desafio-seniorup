@@ -1,4 +1,6 @@
-# store-computers
+# Desafio para Vaga Full Stack [SeniorUp](https://www.seniorup.com.br/) - [PosControle](http://www.poscontrole.com.br/)
+
+Link do desafio [clique aqui](https://github.com/gabrieljony/cadastro-produto-desafio-seniorup/blob/master/DESAFIO%20TECNICO_posc-dwfs-0102.pdf)
 
 > Store Computers - Loja de Cadastro de Computadores com suas Categorias
 
