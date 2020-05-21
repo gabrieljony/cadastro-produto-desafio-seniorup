@@ -1,3 +1,15 @@
+<p align="center">
+  <a href="https://vuejs.org/">
+    <img alt="Vue" src="https://vuejs.org/images/logo.png" width="60" />
+  </a>
+  <a href="https://visualstudio.microsoft.com/pt-br/vs/whatsnew/">
+    <img alt="Vue" src="https://visualstudio.microsoft.com/wp-content/uploads/2019/02/VSWinIcon_100x.png" width="60" />
+  </a>
+  <a href="https://getbootstrap.com.br/">
+    <img alt="Vue" src="https://getbootstrap.com.br/docs/4.1/assets/img/bootstrap-stack.png" width="60" />
+  </a>
+</p>
+
 # Desafio para Vaga Full Stack [SeniorUp](https://www.seniorup.com.br/) - [PosControle](http://www.poscontrole.com.br/)
 
 Link do desafio [clique aqui](https://github.com/gabrieljony/cadastro-produto-desafio-seniorup/blob/master/DESAFIO%20TECNICO_posc-dwfs-0102.pdf)
